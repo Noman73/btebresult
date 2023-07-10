@@ -20,3 +20,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::resource('/admin/category', App\Http\Controllers\Admin\ResultCategoryController::class);
+Route::resource('/admin/result', App\Http\Controllers\Admin\ResultController::class);
