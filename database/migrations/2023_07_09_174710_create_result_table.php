@@ -16,6 +16,7 @@ return new class extends Migration
             $table->tinyInteger('semister');
             $table->unsignedBigInteger('roll');
             $table->string('result',200);
+            $table->integer('year');
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('author_id');
             $table->tinyInteger('status')->default(1);
