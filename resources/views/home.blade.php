@@ -55,6 +55,10 @@
                     </select>
                 </div>
                 <div class="form-group">
+                  <label for="">year</label>
+                  <input class="form-control" type="number" id="year">
+              </div>
+                <div class="form-group">
                     <label for="">Text File</label>
                     <input class="form-control" type="file" id="myfile">
                 </div>
@@ -127,22 +131,23 @@ function myfunc(){
 function requestData(getArr){
   let category=$('#category').val();
   let semister=$('#semister').val();
-  axios.post("{{URL::to('admin/result')}}",{result:getArr,category:category,semister:semister})
+  let year=$('#year').val();
+  axios.post("{{URL::to('admin/result')}}",{result:getArr,category:category,semister:semister,year:year})
   .then(function (response) {
       console.log(response.data);
     })
     
 }
 function xxxx(){
-    var txtfile=document.getElementById('myfile').files[0];
-    console.log(txtfile)
-    readTextFile1('new.txt'); //calling the function
-    console.log(status);
-    //time for looping >:D
-    let splitStatus=status.split('\n')
-    for(let i=0;i<splitStatus.length;i++){
-    let line=splitStatus[i];
-    console.log(line);
+      var txtfile=document.getElementById('myfile').files[0];
+      console.log(txtfile)
+      readTextFile1('new.txt'); //calling the function
+      console.log(status);
+      //time for looping >:D
+      let splitStatus=status.split('\n')
+      for(let i=0;i<splitStatus.length;i++){
+      let line=splitStatus[i];
+      console.log(line);
     //whateverYouWannaDoNext
     }
 }

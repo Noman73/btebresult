@@ -39,6 +39,7 @@ class ResultController extends Controller
             'category'=>"required|max:200|min:1",
             'semister'=>"required|max:200|min:1",
             'result'=>"required|array",
+            'year'=>"required|max:4|min:4",
         ]);
         if($validator->passes()){
             for($i=0;count($request->result)>$i;$i++){
@@ -46,6 +47,7 @@ class ResultController extends Controller
                 $cat->roll=$request->result[$i][0];
                 $cat->result=$request->result[$i][1];
                 $cat->semister=$request->semister;
+                $cat->year=$request->year;
                 $cat->category_id=$request->category;
                 $cat->author_id=auth()->user()->id;
                 $cat->status=1;
