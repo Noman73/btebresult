@@ -15,9 +15,10 @@ class ResultController extends Controller
             'category'=>"required|max:20|min:1",
             'roll'=>"required|max:200|min:1",
             'semister'=>"required|max:200|min:1",
+            'year'=>"required|max:4|min:4",
         ]);
         if($validator->passes()){
-            $data=Result::where('category_id',$request->category)->where('roll',$request->roll)->where('semister',$request->semister)->get();
+            $data=Result::where('category_id',$request->category)->where('roll',$request->roll)->where('semister',$request->semister)->where('year',$request->year)->get();
             if ($data->count()>0) {
                 return response()->json(['status'=>true,'data'=>$data]);
             }else{
