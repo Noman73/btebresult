@@ -143,6 +143,7 @@
     <script src="{{asset('storage/frontend/assets/owl-carousel/js/owl.carousel.min.js')}}"></script>
     <script src="{{asset('storage/frontend/js/modernizr.custom.js')}}"></script>
     <script src="{{asset('storage/frontend/js/custom.js')}}"></script>
+    @stack('script')
 </body>
 
 

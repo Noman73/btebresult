@@ -94,8 +94,6 @@ function readFileAsString(file, callback) {
 
 
 
-
-
     var fileInput = document.getElementById('myfile');
     var arr;
     var freshArr=[];
@@ -106,6 +104,9 @@ function readFileAsString(file, callback) {
         console.log(text.split('\n'));
         arr=text.split('\n');
             var regex = /^\d+\s+\(\d+(\.\d+)?\)/;
+            var regex2=/^\d{6} \{ \d{4}\(T\)(, \d{4}\(T\))* \}$/
+            
+
             for(i=1;i<=arr.length;i++){
                 if(arr[i]!='' && regex.test(arr[i].replace('\r',''))){
                     console.log(arr[i].replace('\r',''),'xxx');
@@ -113,6 +114,10 @@ function readFileAsString(file, callback) {
                     result=arr[i].replace('\r','');
                     result=result.split(' ')
                     freshArr.push([result[0],(result[1].replace('(','')).replace(')','') ]);
+                }else if(arr[i]!='' && regex2.test(arr[i].replace('\r',''))){
+                    result=arr[i].replace('\r','');
+                    result=result.split('{')
+                    freshArr.push([result[0],(result[1].replace(/\(T\)/g,'')).replace('}','').replace(/\s/g, '') ]);
                 }else{
                     console.log('not find')
                 }
@@ -125,10 +130,12 @@ function readFileAsString(file, callback) {
     });
 
 function myfunc(){
+    console.log(freshArr)
     requestData(freshArr);
 }
 
 function requestData(getArr){
+  return false;
   let category=$('#category').val();
   let semister=$('#semister').val();
   let year=$('#year').val();
