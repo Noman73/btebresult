@@ -100,13 +100,11 @@ function readFileAsString(file, callback) {
     fileInput.addEventListener('change', function(event) {
     var file = event.target.files[0];
     if (file) {
-        readFileAsString(file, function(text) {
+        readFileAsString(file, function(text){
         console.log(text.split('\n'));
         arr=text.split('\n');
             var regex = /^\d+\s+\(\d+(\.\d+)?\)/;
-            var regex2=/^\d{6} \{ \d{4}\(T\)(, \d{4}\(T\))* \}$/
-            
-
+            var regex2=/^\d{6} \{ \d{4}\(T\)(, \d{4}\(T\))* \}$/;
             for(i=1;i<=arr.length;i++){
                 if(arr[i]!='' && regex.test(arr[i].replace('\r',''))){
                     console.log(arr[i].replace('\r',''),'xxx');
@@ -116,13 +114,13 @@ function readFileAsString(file, callback) {
                     freshArr.push([result[0],(result[1].replace('(','')).replace(')','') ]);
                 }else if(arr[i]!='' && regex2.test(arr[i].replace('\r',''))){
                     result=arr[i].replace('\r','');
-                    result=result.split('{')
+                    result=result.split('{');
                     freshArr.push([result[0],(result[1].replace(/\(T\)/g,'')).replace('}','').replace(/\s/g, '') ]);
                 }else{
-                    console.log('not find')
+                    console.log('not find');
                 }
                 if(i==(arr.length-1)){
-                    myfunc()
+                    myfunc();
                 }
             }
         });
